@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#f4f6f8"/>
+  <text x="600" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#17212b">RideShare - Wireframe MVP</text>
+
+  <!-- Screen 1: Lista e udhetimeve -->
+  <g transform="translate(70,80)">
+    <rect width="300" height="570" rx="22" fill="#ffffff" stroke="#17212b" stroke-width="3"/>
+    <rect width="300" height="64" rx="20" fill="#2e6f95"/>
+    <text x="22" y="39" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">RideShare</text>
+    <text x="22" y="96" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#17212b">Kërko udhëtim</text>
+    <rect x="18" y="112" width="264" height="42" rx="6" fill="#eef2f4" stroke="#9aa8b2"/>
+    <text x="32" y="138" font-family="Arial, sans-serif" font-size="13" fill="#687681">Destinacioni</text>
+    <rect x="18" y="172" width="264" height="82" rx="8" fill="#ffffff" stroke="#9aa8b2"/>
+    <text x="32" y="198" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#17212b">Prishtinë → Kolegji AAB</text>
+    <text x="32" y="222" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Sot, 08:00  |  Dreni</text>
+    <text x="32" y="243" font-family="Arial, sans-serif" font-size="13" fill="#2e6f95">2 vende të lira</text>
+    <rect x="18" y="270" width="264" height="82" rx="8" fill="#ffffff" stroke="#9aa8b2"/>
+    <text x="32" y="296" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#17212b">Fushë Kosovë → AAB</text>
+    <text x="32" y="320" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Sot, 08:30  |  Elira</text>
+    <text x="32" y="341" font-family="Arial, sans-serif" font-size="13" fill="#2e6f95">1 vend i lirë</text>
+    <rect x="18" y="500" width="264" height="44" rx="6" fill="#2e6f95"/>
+    <text x="150" y="527" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Posto udhëtim</text>
+    <text x="150" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">1. Lista e udhëtimeve</text>
+  </g>
+
+  <!-- Screen 2: Detajet e udhetimit -->
+  <g transform="translate(450,80)">
+    <rect width="300" height="570" rx="22" fill="#ffffff" stroke="#17212b" stroke-width="3"/>
+    <rect width="300" height="64" rx="20" fill="#2e6f95"/>
+    <text x="22" y="39" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Detajet</text>
+    <text x="22" y="105" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#17212b">Udhëtimi i Drenit</text>
+    <line x1="22" y1="122" x2="278" y2="122" stroke="#d2d9de"/>
+    <text x="22" y="157" font-family="Arial, sans-serif" font-size="14" fill="#52616b">Nisja</text>
+    <text x="22" y="180" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">Prishtinë</text>
+    <text x="22" y="222" font-family="Arial, sans-serif" font-size="14" fill="#52616b">Destinacioni</text>
+    <text x="22" y="245" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">Kolegji AAB</text>
+    <text x="22" y="287" font-family="Arial, sans-serif" font-size="14" fill="#52616b">Data dhe ora</text>
+    <text x="22" y="310" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">Sot, 08:00</text>
+    <text x="22" y="352" font-family="Arial, sans-serif" font-size="14" fill="#52616b">Shoferi</text>
+    <text x="22" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">Dreni</text>
+    <rect x="22" y="410" width="256" height="45" rx="6" fill="#e3f1e8" stroke="#63a879"/>
+    <text x="150" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#28613a">2 vende të lira</text>
+    <rect x="22" y="478" width="256" height="45" rx="6" fill="#2e6f95"/>
+    <text x="150" y="506" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Kërko vend</text>
+    <text x="150" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">2. Detajet e Drenit</text>
+  </g>
+
+  <!-- Screen 3: Statusi i kerkeses -->
+  <g transform="translate(830,80)">
+    <rect width="300" height="570" rx="22" fill="#ffffff" stroke="#17212b" stroke-width="3"/>
+    <rect width="300" height="64" rx="20" fill="#2e6f95"/>
+    <text x="22" y="39" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">RideShare</text>
+    <circle cx="150" cy="178" r="52" fill="#fff3d6" stroke="#d89d2b" stroke-width="3"/>
+    <text x="150" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#9a6a12">...</text>
+    <text x="150" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#17212b">Kërkesa në pritje</text>
+    <text x="150" y="306" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Kërkesa jote u dërgua me sukses.</text>
+    <text x="150" y="328" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Prit përgjigjen e shoferit Dreni.</text>
+    <rect x="22" y="385" width="256" height="88" rx="8" fill="#f7f9fa" stroke="#c4cdd3"/>
+    <text x="38" y="413" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Udhëtimi</text>
+    <text x="38" y="436" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#17212b">Prishtinë → Kolegji AAB</text>
+    <text x="38" y="459" font-family="Arial, sans-serif" font-size="13" fill="#52616b">Sot, 08:00  |  Dreni</text>
+    <text x="150" y="594" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b">3. Statusi i kërkesës</text>
+  </g>
+</svg>
