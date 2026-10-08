@@ -1,7 +1,27 @@
+import Link from "next/link"
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
-import { udhetimet } from "@/lib/udhetimet";
+import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  let udhetimet: Udhetim[];
+
+  try {
+    udhetimet = await lexoUdhetimet();
+  } catch {
+    return (
+      <main className="detail-shell">
+        <p className="kicker">RideShare · Neon</p>
+        <h1>RideShare</h1>
+        <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+        <Link className="action action--secondary" href="/">
+          Provo përsëri
+        </Link>
+      </main>
+    );
+  }
+
   return (
     <main className="shell">
       <header className="hero">
@@ -16,18 +36,25 @@ export default function Home() {
           </p>
         </div>
       </header>
+
       <section className="section-heading" aria-labelledby="trip-list-heading">
         <div>
-          <p className="kicker">Sot · 01 Tetor</p>
+          <p className="kicker">Burimi: Neon · të dhëna fiktive</p>
           <h2 id="trip-list-heading">Gjej udhëtimin tënd</h2>
         </div>
         <span className="trip-count">{udhetimet.length} udhëtime</span>
       </section>
-      <div className="trip-list">
-        {udhetimet.map((udhetim) => (
-          <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
-        ))}
-      </div>
+
+      {udhetimet.length === 0 ? (
+        <p>Nuk ka udhëtime për momentin.</p>
+      ) : (
+        <div className="trip-list">
+          {udhetimet.map((udhetim) => (
+            <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
+          ))}
+        </div>
+      )}
+
       <footer className="footer-note">
         MVP demonstrim · Të dhëna fiktive · Pa rezervim real
       </footer>

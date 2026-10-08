@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import { gjejUdhetimin } from "@/lib/udhetimet";
+
+export const dynamic = "force-dynamic";
 
 export default async function Kerkesa({
   params,
@@ -8,8 +11,25 @@ export default async function Kerkesa({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const udhetim = gjejUdhetimin(id);
+  let udhetim;
+
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch {
+    return (
+      <main className="detail-shell">
+        <p className="kicker">RideShare · Neon</p>
+        <h1>RideShare</h1>
+        <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+        <Link className="action action--secondary" href="/">
+          ← Kthehu te lista
+        </Link>
+      </main>
+    );
+  }
+
   if (!udhetim) notFound();
+
   return (
     <main className="detail-shell">
       <Link className="back-link" href={`/udhetimi/${id}`}>
