@@ -263,6 +263,50 @@ a {
   font-size: 42px;
   line-height: 1;
 }
+.panel-card > p {
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+.panel-card code {
+  padding: 3px 6px;
+  color: var(--teal-dark);
+  background: #edf5f1;
+  border-radius: 4px;
+}
+.driver-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.driver-form h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+}
+.driver-form label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.driver-form input[type="time"] {
+  width: min(100%, 180px);
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--ink);
+  background: white;
+}
+.driver-form .action {
+  width: fit-content;
+}
+.driver-form p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
 @media (max-width: 560px) {
   .shell,
   .detail-shell {

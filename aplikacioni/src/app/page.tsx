@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
+import Hyrja from "@/components/Hyrja";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
 export const dynamic = "force-dynamic";
@@ -36,6 +37,10 @@ export default async function Home() {
           </p>
         </div>
       </header>
+
+      <p>
+        <Hyrja brenda={false} />
+      </p>
 
       <section className="section-heading" aria-labelledby="trip-list-heading">
         <div>
