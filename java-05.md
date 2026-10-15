@@ -20,11 +20,22 @@
 
 ## Provat
 
-- `npm run lint` kaloi pa gabime.
-- `npm run build` kaloi dhe gjeneroi rrugët `/panel` dhe `/api/auth/[...nextauth]`.
-- Aplikacioni lokal ktheu 200 për listën, `/panel`, endpoint-in e auth dhe detajet e ID 2.
-- `schema-java05.sql` u ekzekutua në Neon; tabela `profilet` dhe kolona `udhetimet.shofer_id` u verifikuan.
-- Hyrja reale me GitHub, caktimi i ID-së personale si pronar dhe provat e ruajtjes/refuzimit të orës kërkojnë OAuth App dhe kredencialet e tua.
+### Prova 1: Hyrja reale me GitHub
+
+Hapa `http://localhost:3000`, klikova **Hyr me GitHub**, autorizova aplikacionin dhe u ktheva në panelin `/panel`.
+Rezultati real: paneli shfaqi **“Përshëndetje, Blerion Statovci”**, ID-në GitHub `247399869`, rolin dhe butonin **“Dil”**.
+
+### Prova 2: Roli udhëtar dhe kufizimi i lejeve
+
+Në panelin e autentikuar kontrollova profilin e llogarisë së përdorur për hyrje.
+Rezultati real: paneli shfaqi **“Roli: udhetar”** dhe mesazhin **“Si udhëtar mund t’i shohësh udhëtimet, por nuk mund të ndryshosh orën.”**; formulari i shoferit nuk u shfaq.
+
+### Prova 3: Kontrollet teknike, rrugët dhe databaza
+
+Ekzekutova `npm run lint` dhe `npm run build`, kontrollova rrugët lokale `/`, `/panel`, `/api/auth/providers` dhe `/udhetimi/2`, si dhe ekzekutova `schema-java05.sql` në Neon.
+Rezultati real: lint dhe build kaluan pa gabime, rrugët u përgjigjën me HTTP 200 dhe u verifikuan tabela `profilet` dhe kolona `udhetimet.shofer_id`.
+
+Testi i ndryshimit si shofer-pronar dhe refuzimit për një përdorues tjetër kërkon që profili i përdorur për hyrje të caktohet si `shofer` dhe të lidhet me udhëtimin; profili i provuar këtu është `udhetar`.
 
 ## Siguria
 
