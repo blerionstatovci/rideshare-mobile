@@ -30,6 +30,21 @@ a {
 a {
   color: inherit;
 }
+.pwa-notice {
+  width: min(100% - 32px, 860px);
+  margin: 0 auto;
+  padding: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.pwa-notice a {
+  color: var(--teal-dark);
+  font-weight: 800;
+}
+.pwa-notice p {
+  display: inline;
+  margin: 0 0 0 8px;
+}
 .shell {
   width: min(100% - 32px, 860px);
   margin: 0 auto;
