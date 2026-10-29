@@ -33,37 +33,37 @@ ose njoftim për shoferin.
 Ndryshova mesazhin e kërkesës që të dallojë simulimin nga një rezervim real:
 kërkesa shfaqet vetëm në demonstrim, shoferi nuk njoftohet dhe vendi nuk
 rezervohet. Kjo shmang premtimin e rremë për një veprim që aplikacioni nuk e
-kryen. Shtova edhe sqarimin për hyrjen, që përdoruesi ta dijë se mund ta provojë
-kërkesën pa u kyçur.
+kryen. Shtova edhe sqarimin në faqen kryesore që hyrja me GitHub nuk kërkohet
+për kërkesën demonstruese.
 
-Skedari: aplikacioni/src/app/udhetimi/[id]/kerkesa/page.tsx
+Skedari: aplikacioni/src/app/page.tsx
 
 ## Prova 1
 
-- **Hapat:** Nisa aplikacionin, hapa `/` pa hyrë me GitHub dhe pastaj hapa
-  `/api/udhetimet`.
-- **Pritshmëria:** Faqja shfaq listën; API-ja kthen udhëtimet publike. Shpjegimi
-  tregon se hyrja nuk kërkohet për kërkesën demonstruese.
-- **Vëzhgimi:** Faqja dhe API-ja u përgjigjën me HTTP 200. API-ja ktheu tri
+Hapat: Nisa aplikacionin, hapa `/` pa hyrë me GitHub dhe pastaj hapa
+`/api/udhetimet`.
+Pritshmëria: Faqja shfaq listën; API-ja kthen udhëtimet publike. Shpjegimi
+tregon se hyrja nuk kërkohet për kërkesën demonstruese.
+Vëzhgimi: Faqja dhe API-ja u përgjigjën me HTTP 200. API-ja ktheu tri
   udhëtime. ID 2 ishte Fushë Kosovë → AAB, ora 08:15, me 1 vend të lirë. Faqja
   shpjegoi se hyrja hap profilin dhe panelin, por kërkesa mund të provohet pa
   hyrë.
 
 ## Prova 2
 
-- **Hapat:** Nga lista ndoqa ID 2 duke hapur `/udhetimi/2`.
-- **Pritshmëria:** Detajet paraqesin të njëjtin ID dhe të njëjtat të dhëna si
-  karta në listë.
-- **Vëzhgimi:** Faqja u përgjigj me HTTP 200 dhe shfaqi ID 2, Fushë Kosovë →
+Hapat: Nga lista ndoqa ID 2 duke hapur `/udhetimi/2`.
+Pritshmëria: Detajet paraqesin të njëjtin ID dhe të njëjtat të dhëna si
+karta në listë.
+Vëzhgimi: Faqja u përgjigj me HTTP 200 dhe shfaqi ID 2, Fushë Kosovë →
   AAB, nisjen 08:15 dhe 1 vend të lirë. Shoferi ishte Dreni dhe vendtakimi
   “Te stacioni kryesor”.
 
 ## Prova 3
 
-- **Hapat:** Hapa `/udhetimi/2/kerkesa` pa hyrë me GitHub.
-- **Pritshmëria:** Faqja tregon simulimin dhe sqaron se nuk ka rezervim real ose
-  njoftim për shoferin.
-- **Vëzhgimi:** Faqja u përgjigj me HTTP 200. Shfaqi “Simulim: Në pritje” dhe
+Hapat: Hapa `/udhetimi/2/kerkesa` pa hyrë me GitHub.
+Pritshmëria: Faqja tregon simulimin dhe sqaron se nuk ka rezervim real ose
+njoftim për shoferin.
+Vëzhgimi: Faqja u përgjigj me HTTP 200. Shfaqi “Simulim: Në pritje” dhe
   sqaroi se kërkesa u regjistrua vetëm në demonstrim, shoferi nuk u njoftua dhe
   vendi nuk u rezervua.
 
@@ -74,13 +74,4 @@ qartëson se hyrja nuk kërkohet për kërkesën demonstruese. Udhëtimet lexohe
 Neon në server përmes `aplikacioni/src/lib/udhetimet.ts`. Provat përdorën
 udhëtimet demo që u kthyen nga API-ja.
 
-## Commit-et
 
-- **Para:** https://github.com/blerionstatovci/rideshare-mobile/commit/de1433349a35ca3cf2d7fd372fdeb180c137e93d
-- **Pas:** https://github.com/blerionstatovci/rideshare-mobile/commit/2a415d3ef08a554fb782451d15b91a9d4c69efc7
-
-## Ndihma nga AI
-
-Përdora AI për të shqyrtuar udhëzimin, për të kontrolluar rrjedhën e skedarëve,
-për të provuar faqet lokale dhe për të strukturuar raportin. Vëzhgimet në prova
-janë rezultatet që u shfaqën realisht në aplikacion.
