@@ -44,9 +44,12 @@ export default async function Kerkesa({
             <h1>Simulim: Në pritje</h1>
             <p>
               Kërkesa për udhëtimin {udhetim.nisja} → {udhetim.destinacioni} u
-              pranua nga demonstrimi.
+              regjistrua vetëm në demonstrim.
             </p>
-            <p>Nuk u dërgua te shoferi dhe nuk krijon rezervim real.</p>
+            <p>
+              Shoferi nuk është njoftuar dhe vendi nuk është rezervuar. Statusi
+              “Në pritje” këtu nuk do të thotë se udhëtimi është konfirmuar.
+            </p>
           </>
         ) : (
           <h1>Nuk ka vende të lira.</h1>

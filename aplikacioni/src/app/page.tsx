@@ -41,6 +41,10 @@ export default async function Home() {
       <p>
         <Hyrja brenda={false} />
       </p>
+      <p className="footer-note">
+        Hyrja me GitHub hap profilin dhe panelin; kërkesën demonstruese mund ta
+        provosh edhe pa hyrë.
+      </p>
 
       <section className="section-heading" aria-labelledby="trip-list-heading">
         <div>
