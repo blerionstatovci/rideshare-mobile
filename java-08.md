@@ -57,28 +57,28 @@ fiktive nuk u shfaqën në faqe. Gabimet `code: 2`, `code: 3` dhe API-ja që
 mungon dhanë secila mesazhin e vet dhe butoni u riaktivizua. Nuk përdora
 koordinata reale.
 
-### Prova me një hyrje të re
+## Prova me një hyrje të re
 
-Hyrja që provova: `Biblioteka`, pastaj shkrova `Parkingu` pa e konfirmuar.
+- Hyrja që provova: `Biblioteka`, pastaj shkrova `Parkingu` pa e konfirmuar.
 
-Parashikimi im para klikimit: Teksti i ri do të shfaqej në fushë, por vendtakimi
+- Parashikimi im para klikimit: Teksti i ri do të shfaqej në fushë, por vendtakimi
 i konfirmuar do të mbetej `Te stacioni kryesor` derisa të shtypja **Konfirmo**.
 Pas konfirmimit, vendtakimi do të ndryshonte në tekstin e shkruar.
 
-Çfarë pashë realisht: Në Chrome, në faqen lokale `/java-08-test`, para klikimit
+- Çfarë pashë realisht: Në Chrome, në faqen lokale `/java-08-test`, para klikimit
 fusha shfaqi `Biblioteka`, ndërsa vendtakimi i konfirmuar mbeti
 `Te stacioni kryesor`. Pas klikimit te **Konfirmo**, vendtakimi i konfirmuar u
 bë `Biblioteka`. Kur shkrova `Parkingu` pa e konfirmuar, vendtakimi i konfirmuar
 mbeti `Biblioteka`. Kur provova vetëm hapësira dhe konfirmova, u shfaq gabimi
 `Shkruaj një vendtakim para se ta konfirmosh.` dhe vendtakimi mbeti `Biblioteka`.
 
-Skedari dhe funksioni që e shpjegojnë: `aplikacioni/src/components/Vendtakimi.tsx`,
+- Skedari dhe funksioni që e shpjegojnë: `aplikacioni/src/components/Vendtakimi.tsx`,
 komponenti `Vendtakimi`, ruan veçmas tekstin e fushës dhe vendtakimin e
 konfirmuar me `useState`. Funksioni `konfirmoVendtakimin` e pastron tekstin dhe
 e ndryshon vendtakimin vetëm pas konfirmimit. Faqja `/java-08-test` përdor po
 këtë komponent me udhëtim fiktiv lokal.
 
-Çfarë kuptova ose korrigjova: Shkrimi i hyrjes nuk e ndryshon vetë vendtakimin;
+- Çfarë kuptova ose korrigjova: Shkrimi i hyrjes nuk e ndryshon vetë vendtakimin;
 duhet shtypur **Konfirmo**. Ky konfirmim ruhet vetëm në gjendjen lokale të faqes
 dhe nuk shkruhet në databazë. Faqja e provës më lejon ta kontrolloj pa u varur
 nga lidhja me databazën.
