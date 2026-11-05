@@ -57,6 +57,39 @@ fiktive nuk u shfaqën në faqe. Gabimet `code: 2`, `code: 3` dhe API-ja që
 mungon dhanë secila mesazhin e vet dhe butoni u riaktivizua. Nuk përdora
 koordinata reale.
 
+### Prova 4: Konfirmimi i një hyrjeje të re
+
+**Hyrja që provova:** Zëvendësova `Te stacioni kryesor` me
+`Porta jugore e bibliotekes`.
+
+**Parashikimi im para klikimit:** Para se të shtypja **“Konfirmo”**, fusha do
+ta shfaqte hyrjen e re, por vendtakimi i zgjedhur do të mbetej
+`Te stacioni kryesor`. Pas klikimit prisja që vendtakimi i zgjedhur të
+ndryshonte dhe të shfaqej mesazhi i konfirmimit.
+
+**Çfarë pashë realisht:** Në Chrome lokalisht, fusha shfaqi
+`Porta jugore e bibliotekes`; para klikimit vendtakimi i zgjedhur mbeti
+`Te stacioni kryesor`. Pas klikimit, faqja shfaqi
+`Vendtakimi i zgjedhur: Porta jugore e bibliotekes` dhe
+`Vendtakimi u konfirmua në këtë pajisje.`
+
+**Skedari dhe funksioni që e shpjegojnë:**
+`aplikacioni/src/components/Vendtakimi.tsx`, komponenti `Vendtakimi`, ruan
+veçmas tekstin e fushës dhe vendtakimin e zgjedhur me `useState`.
+`konfirmoVendtakimin` e pastron tekstin dhe e ndryshon vendtakimin e zgjedhur
+vetëm pas konfirmimit.
+
+**Çfarë kuptova ose korrigjova:** Shkrimi i hyrjes nuk e ndryshon vetë
+vendtakimin; duhet shtypur **“Konfirmo”**. Ky konfirmim mbetet në gjendjen
+lokale të faqes dhe nuk ruhet në databazë.
+
+**Shënim për provën:** Faqja normale `/udhetimi/2` shfaqi
+`Nuk u lidhëm me databazën. Provo përsëri.` gjatë këtij testimi. Për të provuar
+ndërfaqen, përdora përkohësisht rrugën lokale `/verifikim-java08`, e cila
+renderonte komponentin real `Vendtakimi` me vendtakimin fillestar
+`Te stacioni kryesor`; rrugën e përkohshme e hoqa pas provës. Lidhja me Neon
+nuk u verifikua nga kjo provë.
+
 ## Ku gjendet puna
 
 - `aplikacioni/src/components/Vendtakimi.tsx` — forma, gjendja lokale dhe leja
