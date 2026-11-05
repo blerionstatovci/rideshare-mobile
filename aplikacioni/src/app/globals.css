@@ -271,7 +271,10 @@ a {
 }
 .meeting-point__selected,
 .meeting-point__privacy,
-.meeting-point__status {
+.meeting-point__status,
+.meeting-point__error,
+.meeting-point__confirmation,
+.meeting-point__accuracy {
   margin: 0;
   line-height: 1.5;
 }
@@ -323,8 +326,24 @@ a {
 .meeting-point__status--success {
   color: var(--teal-dark);
 }
-.meeting-point__status--error {
+.meeting-point__status--denied,
+.meeting-point__status--timeout,
+.meeting-point__status--unavailable,
+.meeting-point__error {
   color: #9b3d34;
+}
+.meeting-point__error,
+.meeting-point__confirmation {
+  min-height: 1.5em;
+  font-size: 14px;
+}
+.meeting-point__confirmation {
+  color: var(--teal-dark);
+}
+.meeting-point__accuracy {
+  min-height: 1em;
+  color: var(--muted);
+  font-size: 13px;
 }
 .meeting-point__privacy {
   color: var(--muted);

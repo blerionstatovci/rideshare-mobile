@@ -6,7 +6,13 @@ type VendtakimiProps = {
   vendtakimiFillestar: string;
 };
 
-type GjendjaLokacionit = "idle" | "loading" | "success" | "error";
+type GjendjaLokacionit =
+  | "idle"
+  | "loading"
+  | "success"
+  | "denied"
+  | "timeout"
+  | "unavailable";
 
 export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
   const [tekstNeForme, setTekstNeForme] = useState(vendtakimiFillestar);
@@ -15,30 +21,37 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
   const [gjendjaLokacionit, setGjendjaLokacionit] =
     useState<GjendjaLokacionit>("idle");
   const [mesazhiLokacionit, setMesazhiLokacionit] = useState("");
+  const [saktesia, setSaktesia] = useState<number | null>(null);
+  const [gabimiVendtakimit, setGabimiVendtakimit] = useState("");
+  const [mesazhiKonfirmimit, setMesazhiKonfirmimit] = useState("");
+  const kaGabimLokacioni = ["denied", "timeout", "unavailable"].includes(
+    gjendjaLokacionit,
+  );
 
   function konfirmoVendtakimin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const vendtakimi = tekstNeForme.trim();
 
     if (!vendtakimi) {
-      setMesazhiLokacionit("Shkruaj një vendtakim para se ta konfirmosh.");
-      setGjendjaLokacionit("error");
+      setGabimiVendtakimit("Shkruaj një vendtakim para se ta konfirmosh.");
+      setMesazhiKonfirmimit("");
       return;
     }
 
     setVendtakimiIZgjedhur(vendtakimi);
-    setMesazhiLokacionit("Vendtakimi u konfirmua në këtë pajisje.");
-    setGjendjaLokacionit("success");
+    setGabimiVendtakimit("");
+    setMesazhiKonfirmimit("Vendtakimi u konfirmua në këtë pajisje.");
   }
 
   function kerkoVendndodhjen() {
     setGjendjaLokacionit("loading");
     setMesazhiLokacionit("Po kërkojmë vendndodhjen…");
+    setSaktesia(null);
 
     const geolocation = navigator.geolocation;
 
     if (!geolocation) {
-      setGjendjaLokacionit("error");
+      setGjendjaLokacionit("unavailable");
       setMesazhiLokacionit(
         "Kjo pajisje nuk e mbështet vendndodhjen. Shkruaje vendtakimin manualisht.",
       );
@@ -50,35 +63,33 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
         (pozicioni) => {
           const saktesia = Math.round(pozicioni.coords.accuracy);
           setGjendjaLokacionit("success");
+          setSaktesia(saktesia);
           setMesazhiLokacionit(
-            `Pozicioni u mor (saktësia rreth ${saktesia} m). Shkruaj emrin e vendtakimit dhe konfirmoje. Koordinatat nuk ruhen.`,
+            "Pozicioni u mor. Shkruaj emrin e vendtakimit dhe konfirmoje. Koordinatat nuk ruhen.",
           );
         },
         (gabimi) => {
-          setGjendjaLokacionit("error");
-
           if (gabimi.code === 1) {
+            setGjendjaLokacionit("denied");
             setMesazhiLokacionit(
               "Leja për vendndodhjen u refuzua. Shkruaje vendtakimin manualisht.",
             );
-          } else if (gabimi.code === 2) {
-            setMesazhiLokacionit(
-              "Telefoni nuk e dha pozicionin. Shkruaje vendtakimin manualisht.",
-            );
           } else if (gabimi.code === 3) {
+            setGjendjaLokacionit("timeout");
             setMesazhiLokacionit(
               "Kërkimi i pozicionit skadoi pas 10 sekondash. Provo përsëri ose shkruaje vendtakimin manualisht.",
             );
           } else {
+            setGjendjaLokacionit("unavailable");
             setMesazhiLokacionit(
-              "Nuk mundëm ta lexojmë pozicionin. Shkruaje vendtakimin manualisht.",
+              "Telefoni nuk e dha pozicionin. Shkruaje vendtakimin manualisht.",
             );
           }
         },
         { timeout: 10000 },
       );
     } catch {
-      setGjendjaLokacionit("error");
+      setGjendjaLokacionit("unavailable");
       setMesazhiLokacionit(
         "Nuk mundëm ta nisim kërkimin e pozicionit. Shkruaje vendtakimin manualisht.",
       );
@@ -88,7 +99,11 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
   return (
     <section className="meeting-point" aria-labelledby="meeting-point-heading">
       <h2 id="meeting-point-heading">Vendtakimi</h2>
-      <p className="meeting-point__selected" aria-live="polite">
+      <p
+        className="meeting-point__selected"
+        data-testid="confirmed-meeting"
+        aria-live="polite"
+      >
         Vendtakimi i zgjedhur: <strong>{vendtakimiIZgjedhur}</strong>
       </p>
 
@@ -96,6 +111,7 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
         <label htmlFor="meeting-point-input">Shkruaj vendtakimin</label>
         <input
           id="meeting-point-input"
+          data-testid="meeting-input"
           name="vendtakimi"
           type="text"
           value={tekstNeForme}
@@ -105,13 +121,30 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
           placeholder="p.sh. Biblioteka"
           required
         />
-        <button className="action action--secondary" type="submit">
+        <button
+          className="action action--secondary"
+          data-testid="confirm-meeting"
+          type="submit"
+        >
           Konfirmo
         </button>
       </form>
 
+      <p
+        className="meeting-point__error"
+        data-testid="meeting-error"
+        role="alert"
+        aria-live="assertive"
+      >
+        {gabimiVendtakimit}
+      </p>
+      <p className="meeting-point__confirmation" aria-live="polite">
+        {mesazhiKonfirmimit}
+      </p>
+
       <button
         className="action action--location"
+        data-testid="locate-me"
         type="button"
         onClick={kerkoVendndodhjen}
         disabled={gjendjaLokacionit === "loading"}
@@ -123,10 +156,15 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
 
       <p
         className={`meeting-point__status meeting-point__status--${gjendjaLokacionit}`}
-        role={gjendjaLokacionit === "error" ? "alert" : "status"}
-        aria-live={gjendjaLokacionit === "error" ? "assertive" : "polite"}
+        data-testid="location-status"
+        data-state={gjendjaLokacionit}
+        role={kaGabimLokacioni ? "alert" : "status"}
+        aria-live={kaGabimLokacioni ? "assertive" : "polite"}
       >
         {mesazhiLokacionit}
+      </p>
+      <p className="meeting-point__accuracy" data-testid="location-accuracy">
+        {saktesia === null ? "" : `Saktësia: ${saktesia} m`}
       </p>
       <p className="meeting-point__privacy">
         Leja kërkohet vetëm kur shtyp butonin. Aplikacioni nuk ruan ose dërgon
