@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Vendtakimi } from "@/components/Vendtakimi";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
 export const dynamic = "force-dynamic";
@@ -52,14 +53,11 @@ export default async function Detajet({
             <strong>{udhetim.shoferi}</strong>
           </div>
           <div className="detail-item">
-            <span>Vendtakimi</span>
-            <strong>{udhetim.vendtakimi}</strong>
-          </div>
-          <div className="detail-item">
             <span>Vende të lira</span>
             <strong>{udhetim.vende}</strong>
           </div>
         </div>
+        <Vendtakimi vendtakimiFillestar={udhetim.vendtakimi} />
         {udhetim.vende > 0 ? (
           <Link
             className="action action--secondary"

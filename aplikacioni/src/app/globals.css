@@ -256,6 +256,85 @@ a {
 .detail-item strong {
   font-size: 17px;
 }
+.meeting-point {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 20px;
+  background: #f4f8f5;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.meeting-point h2 {
+  margin: 0;
+  font-size: 19px;
+}
+.meeting-point__selected,
+.meeting-point__privacy,
+.meeting-point__status {
+  margin: 0;
+  line-height: 1.5;
+}
+.meeting-point__selected {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.meeting-point__selected strong {
+  color: var(--ink);
+}
+.meeting-point__form {
+  display: grid;
+  gap: 8px;
+}
+.meeting-point__form label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.meeting-point__form input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid #aebbb4;
+  border-radius: 4px;
+}
+.meeting-point__form .action {
+  width: fit-content;
+}
+.action--location {
+  width: fit-content;
+  color: var(--teal-dark);
+  background: #dcece6;
+}
+.action--location:hover:not(:disabled) {
+  background: #c9e1d8;
+}
+.action--location:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+.meeting-point__status {
+  min-height: 1.5em;
+  color: var(--muted);
+  font-size: 14px;
+}
+.meeting-point__status--success {
+  color: var(--teal-dark);
+}
+.meeting-point__status--error {
+  color: #9b3d34;
+}
+.meeting-point__privacy {
+  color: var(--muted);
+  font-size: 12px;
+}
+.meeting-point button:focus-visible,
+.meeting-point input:focus-visible {
+  outline: 3px solid #e3b747;
+  outline-offset: 2px;
+}
 .pending {
   padding: 26px;
   background: #fff6dd;
