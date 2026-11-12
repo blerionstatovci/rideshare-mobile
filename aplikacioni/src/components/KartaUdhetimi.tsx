@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { PreferuariUdhetimit } from "@/components/PreferuariUdhetimit";
 import type { Udhetim } from "@/lib/udhetimet";
 
 export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
@@ -33,18 +35,24 @@ export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
         <span>{udhetim.shoferi}</span>
         <span>{udhetim.vendtakimi}</span>
       </div>
-      {kaVende ? (
-        <Link
-          className="action action--secondary"
-          href={`/udhetimi/${udhetim.id}`}
-        >
-          Shiko detajet <span aria-hidden="true">↗</span>
-        </Link>
-      ) : (
-        <button className="action action--disabled" disabled>
-          Nuk ka vende të lira
-        </button>
-      )}
+      <div className="trip-card__actions">
+        {kaVende ? (
+          <Link
+            className="action action--secondary"
+            href={`/udhetimi/${udhetim.id}`}
+          >
+            Shiko detajet <span aria-hidden="true">↗</span>
+          </Link>
+        ) : (
+          <button className="action action--disabled" disabled>
+            Nuk ka vende të lira
+          </button>
+        )}
+        <PreferuariUdhetimit
+          udhetimId={udhetim.id}
+          pershkrimi={`${udhetim.nisja} – ${udhetim.destinacioni}`}
+        />
+      </div>
     </article>
   );
 }

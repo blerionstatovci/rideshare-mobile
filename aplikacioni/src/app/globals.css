@@ -130,6 +130,12 @@ a {
   justify-content: space-between;
   gap: 12px;
 }
+.trip-card__actions {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
 .trip-card__number {
   color: #9da9a5;
   font-size: 12px;
@@ -200,6 +206,57 @@ a {
   color: #8b918e;
   background: #e7ebe8;
   cursor: not-allowed;
+}
+.action--favorite {
+  color: var(--teal-dark);
+  background: #fff4d5;
+  border: 1px solid #e8d28f;
+}
+.action--favorite:hover:not(:disabled) {
+  background: #f8e9b7;
+}
+.action--favorite[aria-pressed="true"] {
+  color: var(--teal-dark);
+  background: #dcece6;
+  border-color: #b9d4c9;
+}
+.action--favorite:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+.favorite-control {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+.favorite-message {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--teal-dark);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.favorite-message--error {
+  color: #9b3d34;
+}
+.action--retry {
+  min-height: 36px;
+  margin-top: 0;
+  padding: 6px 2px;
+  color: var(--teal-dark);
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.action--retry:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.favorite-control button:focus-visible,
+.trip-card__actions a:focus-visible {
+  outline: 3px solid #e3b747;
+  outline-offset: 3px;
 }
 .footer-note {
   margin-top: 30px;

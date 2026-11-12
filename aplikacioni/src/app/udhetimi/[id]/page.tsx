@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { PreferuariUdhetimit } from "@/components/PreferuariUdhetimit";
 import { Vendtakimi } from "@/components/Vendtakimi";
 import { gjejUdhetimin } from "@/lib/udhetimet";
 
@@ -58,6 +59,10 @@ export default async function Detajet({
           </div>
         </div>
         <Vendtakimi vendtakimiFillestar={udhetim.vendtakimi} />
+        <PreferuariUdhetimit
+          udhetimId={udhetim.id}
+          pershkrimi={`${udhetim.nisja} – ${udhetim.destinacioni}`}
+        />
         {udhetim.vende > 0 ? (
           <Link
             className="action action--secondary"
