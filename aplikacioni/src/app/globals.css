@@ -477,6 +477,14 @@ a {
   font-size: 13px;
   line-height: 1.5;
 }
+.live-state { margin-top: 20px; }
+.live-state > .kicker { margin: 0 0 18px; }
+.request-state { display: grid; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.request-state h2, .request-state p { margin: 0; }
+.request-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.connection-status { margin: 18px 0 0; color: #236448; font-weight: 700; }
+.connection-status.is-offline { color: #a53b24; }
+.live-state .small { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
 @media (max-width: 560px) {
   .shell,
   .detail-shell {

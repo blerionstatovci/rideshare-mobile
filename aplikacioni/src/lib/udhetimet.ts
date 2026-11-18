@@ -12,6 +12,14 @@ export type Udhetim = {
   vende: number;
 };
 
+export type GjendjaUdhetimit = {
+  udhetim: Udhetim;
+  kerkesaIme: { id: number; statusi: "ne_pritje" | "pranuar" } | null;
+  kerkesat: { id: number; udhetari: string; statusi: "ne_pritje" | "pranuar" }[];
+  roli: "udhetar" | "shofer";
+  pronar?: boolean;
+};
+
 export async function lexoUdhetimet(): Promise<Udhetim[]> {
   const sql = getSql();
   const rows = await sql`

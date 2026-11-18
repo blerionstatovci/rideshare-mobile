@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 
 import { PreferuariUdhetimit } from "@/components/PreferuariUdhetimit";
 import { Vendtakimi } from "@/components/Vendtakimi";
+import { GjendjaUdhetimitLive } from "@/components/GjendjaUdhetimitLive";
+import { lexoGjendjen } from "@/lib/kerkesat";
 import { gjejUdhetimin } from "@/lib/udhetimet";
+import { profiliIm } from "@/lib/lejet";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +34,14 @@ export default async function Detajet({
   }
 
   if (!udhetim) notFound();
+
+  let gjendja = null;
+  let perdoruesi = null;
+  try {
+    [gjendja, perdoruesi] = await Promise.all([lexoGjendjen(id), profiliIm()]);
+  } catch {
+    // Detajet mbeten të lexueshme edhe kur tabela e javës 10 ende s'është aplikuar.
+  }
 
   return (
     <main className="detail-shell">
@@ -63,19 +74,13 @@ export default async function Detajet({
           udhetimId={udhetim.id}
           pershkrimi={`${udhetim.nisja} – ${udhetim.destinacioni}`}
         />
-        {udhetim.vende > 0 ? (
-          <Link
-            className="action action--secondary"
-            href={`/udhetimi/${id}/kerkesa`}
-          >
-            Kërko vend <span aria-hidden="true">→</span>
-          </Link>
-        ) : (
-          <button className="action action--disabled" disabled>
-            Nuk ka vende të lira
-          </button>
-        )}
       </section>
+      {gjendja ? <GjendjaUdhetimitLive udhetimId={id} fillimi={gjendja} hyrNe={perdoruesi ? "" : "/api/auth/signin"} /> : (
+        <section className="detail-card">
+          <h2>Kërkesa për vend</h2>
+          {!perdoruesi ? <><p>Hyr me GitHub për të kërkuar ose menaxhuar vendet.</p><Link className="action action--secondary" href="/api/auth/signin">Hyr me GitHub</Link></> : <p>Kërkesat live nuk janë gati. Ekzekuto <code>schema-java10.sql</code> në Neon pas migrimeve të mëparshme.</p>}
+        </section>
+      )}
     </main>
   );
 }
