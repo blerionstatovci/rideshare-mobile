@@ -51,14 +51,14 @@ export function GjendjaUdhetimitLive({ udhetimId, fillimi, hyrNe }: { udhetimId:
       <div className="detail-item"><span>Ora</span><strong>{state.udhetim.ora}</strong></div>
     </div>
     {!isDriver ? <div className="request-state">
-      <p>Statusi i kërkesës: <strong>{request ? request.statusi === "pranuar" ? "U pranua" : "Në pritje" : "Pa kërkesë"}</strong></p>
+      <p>Statusi i kërkesës: <strong>{request ? request.statusi === "pranuar" ? "U pranua" : request.statusi === "refuzuar" ? "U refuzua" : "Në pritje" : "Pa kërkesë"}</strong></p>
       {!request && state.udhetim.vende > 0 ? <button className="action action--primary" disabled={busy || offline} onClick={() => void vepro(`/api/udhetimet/${udhetimId}/kerkesat`, "POST")}>Kërko një vend</button> : null}
       {!request && state.udhetim.vende < 1 ? <p>Nuk ka vende të lira.</p> : null}
     </div> : <div className="request-state">
       <h2>Kërkesat e udhëtarëve</h2>
       {state.kerkesat.length ? state.kerkesat.map((item) => <div className="request-row" key={item.id}>
-        <span>{item.udhetari} · <strong>{item.statusi === "pranuar" ? "U pranua" : "Në pritje"}</strong></span>
-        {item.statusi === "ne_pritje" ? <button className="action action--secondary" disabled={busy || offline || state.udhetim.vende < 1} onClick={() => void vepro(`/api/kerkesat/${item.id}/prano`, "POST")}>Prano</button> : null}
+        <span>{item.udhetari} · <strong>{item.statusi === "pranuar" ? "U pranua" : item.statusi === "refuzuar" ? "U refuzua" : "Në pritje"}</strong></span>
+        {item.statusi === "ne_pritje" ? <div><button className="action action--secondary" disabled={busy || offline || state.udhetim.vende < 1} onClick={() => void vepro(`/api/kerkesat/${item.id}/prano`, "POST")}>Prano</button> <button className="action action--secondary" disabled={busy || offline} onClick={() => void vepro(`/api/kerkesat/${item.id}/refuzo`, "POST")}>Refuzo</button></div> : null}
       </div>) : <p>Ende nuk ka kërkesa.</p>}
     </div>}
     <p className={offline ? "connection-status is-offline" : "connection-status"} role="status">{error || (offline ? "Po rilidhemi…" : "Gjendja u lexua nga serveri.")}</p>

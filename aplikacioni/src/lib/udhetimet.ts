@@ -14,8 +14,8 @@ export type Udhetim = {
 
 export type GjendjaUdhetimit = {
   udhetim: Udhetim;
-  kerkesaIme: { id: number; statusi: "ne_pritje" | "pranuar" } | null;
-  kerkesat: { id: number; udhetari: string; statusi: "ne_pritje" | "pranuar" }[];
+  kerkesaIme: { id: number; statusi: "ne_pritje" | "pranuar" | "refuzuar" } | null;
+  kerkesat: { id: number; udhetari: string; statusi: "ne_pritje" | "pranuar" | "refuzuar" }[];
   roli: "udhetar" | "shofer";
   pronar?: boolean;
 };

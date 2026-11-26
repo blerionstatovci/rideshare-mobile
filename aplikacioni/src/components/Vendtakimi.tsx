@@ -86,7 +86,7 @@ export function Vendtakimi({ vendtakimiFillestar }: VendtakimiProps) {
             );
           }
         },
-        { timeout: 10000 },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
       );
     } catch {
       setGjendjaLokacionit("unavailable");

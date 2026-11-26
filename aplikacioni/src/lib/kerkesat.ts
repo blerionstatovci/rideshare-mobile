@@ -86,5 +86,41 @@ export async function pranoKerkese(id: number) {
   const result = rows[0] as { rezultati: string; udhetim_id: string | null; vende: number | null } | undefined;
   if (!result || result.rezultati === "ndaluar") return { status: 404, error: "Kërkesa nuk u gjet." };
   if (result.rezultati === "pa_vende") return { status: 409, error: "Nuk ka më vende të lira." };
+  if (result.rezultati === "pranuar") {
+    await sql`INSERT INTO njoftimet (kerkesa_id, udhetar_id, pergjigjja) SELECT id, udhetar_id, 'pranuar' FROM udhetimet_kerkesat WHERE id = ${id} ON CONFLICT DO NOTHING`;
+  }
   return { status: 200, result };
+}
+
+export async function refuzoKerkese(id: number) {
+  const personi = await identiteti();
+  if (!personi) return { status: 401, error: "Hyr me GitHub për të refuzuar kërkesën." };
+  const profili = await siguroProfil(personi.id, personi.emri);
+  if (!profili || profili.roli !== "shofer") return { status: 403, error: "Vetëm shoferi mund ta refuzojë kërkesën." };
+  const sql = getSql();
+  const rows = await sql`SELECT * FROM refuzo_kerkesen(${id}, ${profili.id})`;
+  const result = rows[0] as { rezultati: string; udhetim_id: string | null } | undefined;
+  if (!result || result.rezultati === "ndaluar") return { status: 404, error: "Kërkesa nuk u gjet." };
+  return { status: 200, result };
+}
+
+export async function njoftimetEPerdoruesit() {
+  const personi = await identiteti();
+  if (!personi) return [];
+  const profili = await siguroProfil(personi.id, personi.emri);
+  if (!profili) return [];
+  const sql = getSql();
+  return sql`SELECT n.id, n.kerkesa_id, n.pergjigjja, n.lexuar_me, u.id AS udhetim_id,
+    u.nisja, u.destinacioni, u.ora FROM njoftimet n
+    JOIN udhetimet_kerkesat k ON k.id = n.kerkesa_id JOIN udhetimet u ON u.id = k.udhetim_id
+    WHERE n.udhetar_id = ${profili.id} ORDER BY n.krijuar_me DESC`;
+}
+
+export async function shenoNjoftiminLexuar(id: number) {
+  const personi = await identiteti();
+  if (!personi) return;
+  const profili = await siguroProfil(personi.id, personi.emri);
+  if (!profili) return;
+  const sql = getSql();
+  await sql`UPDATE njoftimet SET lexuar_me = NOW() WHERE id = ${id} AND udhetar_id = ${profili.id} AND lexuar_me IS NULL`;
 }

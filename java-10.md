@@ -6,13 +6,13 @@ Shtova kërkesa reale për vende në Neon, lexim të gjendjes sipas rolit dhe ri
 
 ## Provat teknike
 
-- `npm.cmd run lint` — kaloi pa gabime.
-- `npm.cmd run build` — kaloi; u përfshinë `/api/udhetimet/[id]/gjendja`, `/api/udhetimet/[id]/kerkesat` dhe `/api/kerkesat/[id]/prano`.
+- `npm.cmd run lint` — u ekzekutua sërish më 2026-11-19 dhe kaloi pa gabime.
+- `npm.cmd run build` — u ekzekutua sërish më 2026-11-19 dhe kaloi; u përfshinë `/api/udhetimet/[id]/gjendja`, `/api/udhetimet/[id]/kerkesat` dhe `/api/kerkesat/[id]/prano`.
 - `schema-java10.sql` u aplikua dhe u verifikua në Neon-in e projektit; tabela `udhetimet_kerkesat` dhe funksioni `prano_kerkesen(bigint,text)` ekzistojnë.
 - Rrugët API u provuan me dy sesione JWT të nënshkruara lokalisht për profilet testuese ekzistuese. Vizitori mori `401`; kërkesa u krijua (`201`), dublikatë e njëjtë u kthye (`200`) me të njëjtin ID; udhëtari pa “Në pritje” dhe shoferi pronar e pa kërkesën.
 - Pranimi u provua dy herë: hera e parë `200`, përsëritja `200`, vendet mbetën 1. Kërkesa e dytë me vende të vendosura në 0 mori `409` dhe mesazhin “Nuk ka më vende të lira.”
 - Të dhënat provizore u fshinë; udhëtimi 2 u kthye në 1 vend dhe pronari i mëparshëm. Nuk u ndryshuan kërkesat/profilet ekzistuese.
-- Rasti i ndërprerjes së rrjetit dhe rilidhjes është i implementuar në komponent, por ende duhet provuar në shfletues me DevTools → Network → Offline dhe No throttling.
+- Rasti i ndërprerjes së rrjetit dhe rilidhjes është i implementuar në komponent, por ende nuk është provuar në shfletues me DevTools → Network → Offline dhe No throttling. Më 2026-11-19 u tentua hapja e shfletuesit për provë; kontrolli i browser-it raportoi se hosti i qasjes nuk ishte i disponueshëm, prandaj prova vizuale nuk u krye. Kjo pikë mbetet e papërfunduar.
 
 ## Rezultatet e provave të funksionalitetit
 
@@ -30,7 +30,7 @@ Shtova kërkesa reale për vende në Neon, lexim të gjendjes sipas rolit dhe ri
 
 ### Prova 3: Offline dhe rilidhja
 
-- Ende nuk e kam provuar në DevTools. Komponenti ruan gjendjen e fundit, shfaq paralajmërimin kur leximet dështojnë, çaktivizon veprimet dhe rilexon pas ngjarjes `online` ose timer-it pasues. Duhet plotësuar ky rezultat pas provës vizuale.
+- Ende nuk e kam provuar në DevTools. Komponenti ruan gjendjen e fundit, shfaq paralajmërimin kur leximet dështojnë, çaktivizon veprimet dhe rilexon pas ngjarjes `online` ose timer-it pasues. Më 2026-11-19 prova u bllokua sepse hosti i qasjes së browser-it nuk ishte i disponueshëm. Ky rezultat nuk raportohet si sukses; duhet plotësuar pas provës vizuale.
 
 ## Skedarët kryesorë
 

@@ -48,6 +48,7 @@ export default async function Panel({
         <p className="kicker">RideShare · GitHub</p>
         <h1>Paneli im</h1>
       </div>
+      <p><Link className="action action--secondary" href="/njoftimet">Shiko njoftimet e mia</Link></p>
       <section className="detail-card panel-card">
         {mesazh ? <p role="status">{mesazh}</p> : null}
         {!profili ? (

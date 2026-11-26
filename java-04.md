@@ -40,8 +40,3 @@ Kërkesa “Në pritje” mbetet simulim: nuk ka ruajtje të rezervimit, autenti
 ose njoftim real të shoferit. Hapi i ardhshëm është konfigurimi i Neon dhe
 ekzekutimi i tri provave me databazën reale.
 
-## Ndihma nga AI
-
-U përdor ndihmë nga AI për integrimin e kërkesave të ushtrimit me strukturën
-ekzistuese të projektit. Verifikimi i databazës dhe provat me SQL Editor duhet
-të bëhen vetë me `DATABASE_URL` privat të projektit.
